@@ -249,15 +249,47 @@ struct Pair<T> {
     x: T,
     y: T,
 }
-use std::{fmt::Display, io::Bytes};
+use std::{
+    fmt::Display,
+    io::{self, Bytes},
+};
 // impl <T:Display+PartialOrd> for Pair<i32> {
 //     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        
+
 //         Ok(())
 //     }
 // }
-fn main() {
 
+fn test(v: &mut Vec<String>, x: &mut String) {
+    // Can I assume here that x is not pointing to v?
+}
+
+struct Node<T> {
+    elem: T,
+}
+pub struct Iter<'a, T> {
+    next: Option<&'a Node<T>>,
+}
+// We *do* have a lifetime here, because Iter has one that we need to define
+impl<'a, T> Iterator for Iter<'a, T> {
+    // Need it here too, this is a type declaration
+    type Item = &'a T;
+
+    // None of this needs to change, handled by the above.
+    // Self continues to be incredibly hype and amazing
+    fn next(&mut self) -> Option<Self::Item> {
+    //     self.next.map(|node| {
+    //         self.next = node.next.map(|node| &node);
+    //         &node.elem
+    //     })
+    // }
+}
+
+fn main() {
+    let mut f = "2".to_owned();
+    let mut g = "2".to_owned();
+    let mut h = vec![f, g];
+    test(&mut h, &mut f);
     // let bytes = Bytes::new();
     // let z = None::<!>?;
 
