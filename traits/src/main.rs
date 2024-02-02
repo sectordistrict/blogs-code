@@ -271,25 +271,25 @@ pub struct Iter<'a, T> {
     next: Option<&'a Node<T>>,
 }
 // We *do* have a lifetime here, because Iter has one that we need to define
-impl<'a, T> Iterator for Iter<'a, T> {
-    // Need it here too, this is a type declaration
-    type Item = &'a T;
+// impl<'a, T> Iterator for Iter<'a, T> {
+//     // Need it here too, this is a type declaration
+//     type Item = &'a T;
 
-    // None of this needs to change, handled by the above.
-    // Self continues to be incredibly hype and amazing
-    fn next(&mut self) -> Option<Self::Item> {
-    //     self.next.map(|node| {
-    //         self.next = node.next.map(|node| &node);
-    //         &node.elem
-    //     })
-    // }
-}
+//     // None of this needs to change, handled by the above.
+//     // Self continues to be incredibly hype and amazing
+//     fn next(&mut self) -> Option<Self::Item> {
+//     //     self.next.map(|node| {
+//     //         self.next = node.next.map(|node| &node);
+//     //         &node.elem
+//     //     })
+//     }
+// }
 
 fn main() {
     let mut f = "2".to_owned();
     let mut g = "2".to_owned();
     let mut h = vec![f, g];
-    test(&mut h, &mut f);
+    // test(&mut h, &mut f);
     // let bytes = Bytes::new();
     // let z = None::<!>?;
 
